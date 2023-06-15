@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
 
   p {
     font-family: 'Roboto', sans-serif;
+    font-weight: 400;
     color: ${(props) => props.theme['base-text']};
     font-size: 1rem;
   }
