@@ -16,23 +16,23 @@ import {
 } from './styles'
 import { NavLink } from 'react-router-dom'
 
-export function CardCoffee() {
+export function CardCoffee({ name, data, description, howMany, photos }) {
   return (
     <CardContainer>
       <ImgCardContainer>
-        <img src={expresso} alt="" />
+        <img src={photos} alt="" />
       </ImgCardContainer>
 
       <CoffeeDatasContainer>
-        <h2>TRADICIONAL</h2>
+        <h2>{data}</h2>
       </CoffeeDatasContainer>
 
       <CoffeeNameContainer>
-        <h2>Expresso Tradicional</h2>
+        <h2>{name}</h2>
       </CoffeeNameContainer>
 
       <CoffeeDescriptionContainer>
-        <p>O tradicional café feito com água quente e grãos moídos</p>
+        <p>{description}</p>
       </CoffeeDescriptionContainer>
 
       <ButtomValueCardContainer>
@@ -47,7 +47,7 @@ export function CardCoffee() {
               <Minus size={14} />
             </button>
 
-            <p>1</p>
+            <p>{howMany}</p>
 
             <button>
               <Plus size={14} />

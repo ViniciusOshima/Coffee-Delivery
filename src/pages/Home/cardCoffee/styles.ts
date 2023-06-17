@@ -20,7 +20,7 @@ export const CardContainer = styled.div`
   height: 19.375rem;
 
   border-radius: 6px 36px 6px 36px;
-  margin: 1.25rem 1rem 1.25rem 0;
+  margin: 1rem 0;
 
   background-color: ${(props) => props.theme['base-card']};
 
