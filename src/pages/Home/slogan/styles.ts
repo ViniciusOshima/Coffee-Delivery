@@ -19,6 +19,9 @@ export const SloganContainer = styled.div`
     font-size: 3rem;
     line-height: 130%;
     color: #272221;
+
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #000;
   }
 
   h2 {
@@ -62,6 +65,11 @@ const QualitiesDefault = styled.div`
   align-items: center;
   gap: 12px;
 
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color: ${(props) => props.theme['base-text']};
+  text-align: center;
+
   span {
     border-radius: 100%;
     height: 2rem;
@@ -100,5 +108,19 @@ export const CoffeeContainer = styled(QualitiesDefault)`
 
   span {
     background-color: ${(props) => props.theme.purple};
+  }
+`
+
+export const ContainerCoffee = styled.div`
+  font-family: 'Baloo 2', cursive;
+  font-size: 1rem;
+  line-height: 130%;
+  color: #403937;
+
+  width: 100%;
+  max-width: 70rem;
+
+  h1 {
+    margin-bottom: 4.125rem;
   }
 `

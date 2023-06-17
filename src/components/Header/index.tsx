@@ -3,8 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 import Logo from '../../assets/Logo-coffee-delivery.svg'
 
-import { HeaderContainer } from './styles'
-import { LocationContainer } from '../../layouts/DefaultLayout/styles'
+import { HeaderContainer, LocationContainer } from './styles'
 
 export function Header() {
   return (
