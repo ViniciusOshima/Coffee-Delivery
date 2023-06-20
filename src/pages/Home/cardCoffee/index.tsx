@@ -10,15 +10,16 @@ import {
   HowManyContainer,
   ImgCardContainer,
   ValueCoffeeContainer,
-  CoffeeDatasContainerAround
+  CoffeeDatasContainerAround,
+  ButtonShoppingCart
 } from './styles'
 import { NavLink } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
 interface CardCoffeeType {
   name: string
   data: string[]
   description: string
-  howMany: number
   photos: string
 }
 
@@ -26,9 +27,48 @@ export function CardCoffee({
   name,
   data,
   description,
-  howMany,
   photos
 }: CardCoffeeType) {
+  const [howMany, setHowMany] = useState(1)
+
+  const [howMuch, setHowMuch] = useState('9,90')
+
+  function handleMinusAmount() {
+    if (howMany > 1) {
+      setHowMany(howMany - 1)
+    }
+  }
+
+  function handlePlusAmount() {
+    if (howMany < 3) {
+      setHowMany(howMany + 1)
+
+      switch (howMany) {
+        case 1:
+          setHowMuch('9,90')
+          break
+        case 2:
+          setHowMuch('19,80')
+          break
+        case 3:
+          setHowMuch('29,70')
+      }
+    }
+  }
+
+  useEffect(() => {
+    switch (howMany) {
+      case 1:
+        setHowMuch('9,90')
+        break
+      case 2:
+        setHowMuch('19,80')
+        break
+      case 3:
+        setHowMuch('29,70')
+    }
+  }, [howMany])
+
   return (
     <CardContainer>
       <ImgCardContainer>
@@ -64,25 +104,25 @@ export function CardCoffee({
       <ButtomValueCardContainer>
         <ValueCoffeeContainer>
           <p>R$</p>
-          <h3>9,90</h3>
+          <h3>{howMuch}</h3>
         </ValueCoffeeContainer>
 
         <ButtomsCardContainer>
           <HowManyContainer>
-            <button>
+            <button onClick={handleMinusAmount}>
               <Minus size={14} />
             </button>
 
             <p>{howMany}</p>
 
-            <button>
+            <button onClick={handlePlusAmount}>
               <Plus size={14} />
             </button>
           </HowManyContainer>
 
-          <NavLink to="/Checkout" title="Checkout-buttom">
+          <ButtonShoppingCart>
             <ShoppingCart size={22} weight="fill" />
-          </NavLink>
+          </ButtonShoppingCart>
         </ButtomsCardContainer>
       </ButtomValueCardContainer>
     </CardContainer>

@@ -101,18 +101,6 @@ export const ButtomsCardContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-
-  a {
-    display: flex;
-    align-items: center;
-
-    color: white;
-
-    background-color: ${(props) => props.theme['purple-dark']};
-
-    padding: 0.5rem;
-    border-radius: 6px;
-  }
 `
 
 export const HowManyContainer = styled.div`
@@ -133,6 +121,8 @@ export const HowManyContainer = styled.div`
     border: none;
 
     background-color: ${(props) => props.theme['base-button']};
+
+    cursor: pointer;
   }
 
   p {
@@ -140,4 +130,18 @@ export const HowManyContainer = styled.div`
     font-size: 1rem;
     color: ${(props) => props.theme['base-title']};
   }
+`
+
+export const ButtonShoppingCart = styled.button`
+  display: flex;
+  align-items: center;
+
+  color: white;
+  background-color: ${(props) => props.theme['purple-dark']};
+
+  padding: 0.5rem;
+  border-radius: 6px;
+
+  border: none;
+  cursor: pointer;
 `
