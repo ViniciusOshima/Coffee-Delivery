@@ -1,7 +1,5 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
 
-import expresso from '../../../assets/coffees-img/Type=Expresso.svg'
-
 import {
   ButtomValueCardContainer,
   ButtomsCardContainer,
@@ -16,7 +14,21 @@ import {
 } from './styles'
 import { NavLink } from 'react-router-dom'
 
-export function CardCoffee({ name, data, description, howMany, photos }) {
+interface CardCoffeeType {
+  name: string
+  data: string[]
+  description: string
+  howMany: number
+  photos: string
+}
+
+export function CardCoffee({
+  name,
+  data,
+  description,
+  howMany,
+  photos
+}: CardCoffeeType) {
   return (
     <CardContainer>
       <ImgCardContainer>

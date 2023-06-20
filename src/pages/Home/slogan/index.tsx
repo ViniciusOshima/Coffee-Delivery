@@ -1,4 +1,5 @@
 import { ShoppingCart, Package, Timer, Coffee } from 'phosphor-react'
+import { v4 as uuidv4 } from 'uuid'
 
 import imgHome from '../../../assets/Imagem-coffee-home.svg'
 
@@ -31,6 +32,7 @@ import {
   // eslint-disable-next-line prettier/prettier
   ContainerWrapCoffee
 } from './styles'
+
 import { CardCoffee } from '../cardCoffee'
 
 export function Home() {
@@ -199,6 +201,7 @@ export function Home() {
           {coffee.map(item => {
             return (
               <CardCoffee
+                key={uuidv4()}
                 name={item.name}
                 data={item.data}
                 description={item.description}
