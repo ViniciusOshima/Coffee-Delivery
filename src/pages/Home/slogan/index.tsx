@@ -119,7 +119,7 @@ export function Home() {
     },
     {
       name: 'Havaiano',
-      data: 'ESPECIAL',
+      data: ['ESPECIAL'],
       description: 'Bebida adocicada preparada com café e leite de coco',
       howMany: 1,
       photo: Havaiano

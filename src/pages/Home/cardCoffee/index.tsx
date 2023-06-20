@@ -11,8 +11,8 @@ import {
   CoffeeNameContainer,
   HowManyContainer,
   ImgCardContainer,
-  // eslint-disable-next-line prettier/prettier
-  ValueCoffeeContainer
+  ValueCoffeeContainer,
+  CoffeeDatasContainerAround
 } from './styles'
 import { NavLink } from 'react-router-dom'
 
@@ -23,9 +23,23 @@ export function CardCoffee({ name, data, description, howMany, photos }) {
         <img src={photos} alt="" />
       </ImgCardContainer>
 
-      <CoffeeDatasContainer>
-        <h2>{data}</h2>
-      </CoffeeDatasContainer>
+      <CoffeeDatasContainerAround>
+        <CoffeeDatasContainer>
+          <h2>{data[0]}</h2>
+        </CoffeeDatasContainer>
+
+        {data[1] && (
+          <CoffeeDatasContainer>
+            <h2>{data[1]}</h2>
+          </CoffeeDatasContainer>
+        )}
+
+        {data[2] && (
+          <CoffeeDatasContainer>
+            <h2>{data[2]}</h2>
+          </CoffeeDatasContainer>
+        )}
+      </CoffeeDatasContainerAround>
 
       <CoffeeNameContainer>
         <h2>{name}</h2>

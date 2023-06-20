@@ -29,11 +29,18 @@ export const CardContainer = styled.div`
   align-items: center;
 `
 
+export const CoffeeDatasContainerAround = styled.div`
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+`
+
 export const CoffeeDatasContainer = styled.div`
-  width: 5.0625rem;
+  width: 4.5rem;
   height: 1.3125rem;
 
-  border-radius: 15%;
+  border-radius: 25%;
   margin: 0.75rem 0 1rem;
 
   background-color: ${(props) => props.theme['yellow-light']};
