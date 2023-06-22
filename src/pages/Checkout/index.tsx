@@ -1,7 +1,15 @@
-import { MapPinLine } from 'phosphor-react'
+import {
+  Bank,
+  CreditCard,
+  CurrencyDollar,
+  MapPinLine,
+  Money
+} from 'phosphor-react'
 
 import {
   BairroInputContainer,
+  ButtonPaymentContainer,
+  ButtonSectionContainer,
   CEPInputContainer,
   CheckoutContainer,
   CidadeInputContainer,
@@ -13,7 +21,10 @@ import {
   FormSection,
   MoreThanOneInputContainer,
   NumeroInputContainer,
+  PaymentDescriptionContainer,
+  PaymentSectionContainer,
   RuaInputInputContainer,
+  TitlesCheckoutContainer,
   UFInputContainer
 } from './styles'
 
@@ -21,7 +32,7 @@ export function Checkout() {
   return (
     <CheckoutContainer>
       <CompleteYourRequest>
-        <h2>Complete seu pedido</h2>
+        <TitlesCheckoutContainer>Complete seu pedido</TitlesCheckoutContainer>
 
         <div>
           <FormSection>
@@ -60,12 +71,38 @@ export function Checkout() {
             </FormContainer>
           </FormSection>
 
-          <div>Pagamento</div>
+          <PaymentSectionContainer>
+            <PaymentDescriptionContainer>
+              <CurrencyDollar size={22} />
+              <div>
+                <h3>Pagamento</h3>
+                <p>
+                  O pagamento é feito na entrega. Escolha a forma que deseja
+                  pagar
+                </p>
+              </div>
+            </PaymentDescriptionContainer>
+
+            <ButtonSectionContainer>
+              <ButtonPaymentContainer>
+                <CreditCard size={16} />
+                <p>CARTÃO DE CRÉDITO</p>
+              </ButtonPaymentContainer>
+              <ButtonPaymentContainer>
+                <Bank size={16} />
+                <p>CARTÃO DE DÉBITO</p>
+              </ButtonPaymentContainer>
+              <ButtonPaymentContainer>
+                <Money size={16} />
+                <p>DINHEIRO</p>
+              </ButtonPaymentContainer>
+            </ButtonSectionContainer>
+          </PaymentSectionContainer>
         </div>
       </CompleteYourRequest>
 
       <CoffeesSelected>
-        <h2>Cafés selecionados</h2>
+        <TitlesCheckoutContainer>Cafés selecionados</TitlesCheckoutContainer>
       </CoffeesSelected>
     </CheckoutContainer>
   )

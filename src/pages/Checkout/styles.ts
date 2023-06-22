@@ -10,6 +10,14 @@ export const CheckoutContainer = styled.div`
   justify-content: center;
 `
 
+export const TitlesCheckoutContainer = styled.h2`
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.125rem;
+  font-weight: 700;
+
+  padding-bottom: 0.9375rem;
+`
+
 export const CompleteYourRequest = styled.div`
   width: 40rem;
 `
@@ -114,4 +122,75 @@ export const UFInputContainer = styled.input`
 export const MoreThanOneInputContainer = styled.div`
   display: flex;
   gap: 12px;
+`
+
+export const PaymentSectionContainer = styled.div`
+  height: 12.9375rem;
+
+  border-radius: 6px;
+  padding: 2.5rem;
+  margin-top: 0.75rem;
+
+  background-color: ${(props) => props.theme['base-card']};
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`
+
+export const PaymentDescriptionContainer = styled.div`
+  display: flex;
+  gap: 8px;
+
+  color: ${(props) => props.theme.purple};
+
+  h3 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: ${(props) => props.theme['base-subtitle']};
+    line-height: 130%;
+  }
+
+  p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.875rem;
+    color: ${(props) => props.theme['base-text']};
+    line-height: 130%;
+    font-weight: 400;
+  }
+`
+
+export const ButtonSectionContainer = styled.div`
+  display: flex;
+  justify-content: center;
+
+  gap: 12px;
+`
+
+export const ButtonPaymentContainer = styled.button`
+  border: none;
+  border-radius: 6px;
+  padding: 1.09375rem 1rem;
+
+  background-color: ${(props) => props.theme['base-button']};
+
+  width: 11.166875rem;
+  height: 3.1875rem;
+
+  color: ${(props) => props.theme.purple};
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+
+  cursor: pointer;
+
+  p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.75rem;
+    line-height: 160%;
+    color: ${(props) => props.theme['base-text']};
+  }
 `
