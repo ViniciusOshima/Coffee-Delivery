@@ -144,4 +144,8 @@ export const ButtonShoppingCart = styled.button`
 
   border: none;
   cursor: pointer;
+
+  &:hover {
+    background-color: ${(props) => props.theme.purple};
+  }
 `

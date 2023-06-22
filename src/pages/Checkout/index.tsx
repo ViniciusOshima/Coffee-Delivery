@@ -7,6 +7,7 @@ import {
 } from 'phosphor-react'
 
 import {
+  AllTotalContainer,
   BairroInputContainer,
   ButtonPaymentContainer,
   ButtonSectionContainer,
@@ -14,6 +15,8 @@ import {
   CheckoutContainer,
   CidadeInputContainer,
   CoffeesSelected,
+  CoffeesSelectedContainer,
+  ConfirmRequest,
   ComplementoInputContainer,
   CompleteYourRequest,
   FormContainer,
@@ -23,10 +26,14 @@ import {
   NumeroInputContainer,
   PaymentDescriptionContainer,
   PaymentSectionContainer,
+  RequestInfoContainer,
   RuaInputInputContainer,
   TitlesCheckoutContainer,
-  UFInputContainer
+  TotalItemsContainer,
+  UFInputContainer,
+  ValuesCoffeeContainer
 } from './styles'
+import { CardCheckout } from '../CardsCheckout'
 
 export function Checkout() {
   return (
@@ -88,10 +95,12 @@ export function Checkout() {
                 <CreditCard size={16} />
                 <p>CARTÃO DE CRÉDITO</p>
               </ButtonPaymentContainer>
+
               <ButtonPaymentContainer>
                 <Bank size={16} />
                 <p>CARTÃO DE DÉBITO</p>
               </ButtonPaymentContainer>
+
               <ButtonPaymentContainer>
                 <Money size={16} />
                 <p>DINHEIRO</p>
@@ -103,6 +112,33 @@ export function Checkout() {
 
       <CoffeesSelected>
         <TitlesCheckoutContainer>Cafés selecionados</TitlesCheckoutContainer>
+
+        <CoffeesSelectedContainer>
+          <CardCheckout />
+
+          <RequestInfoContainer>
+            <ValuesCoffeeContainer>
+              <TotalItemsContainer>
+                <p>Total de itens</p>
+                <h3>R$29,70</h3>
+              </TotalItemsContainer>
+
+              <TotalItemsContainer>
+                <p>entrega</p>
+                <h3>R$3,50</h3>
+              </TotalItemsContainer>
+
+              <AllTotalContainer>
+                <h3>Total</h3>
+                <h3>R$33,20</h3>
+              </AllTotalContainer>
+            </ValuesCoffeeContainer>
+
+            <ConfirmRequest>
+              <button>CONFIRMAR PEDIDO</button>
+            </ConfirmRequest>
+          </RequestInfoContainer>
+        </CoffeesSelectedContainer>
       </CoffeesSelected>
     </CheckoutContainer>
   )

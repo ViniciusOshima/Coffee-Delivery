@@ -193,4 +193,81 @@ export const ButtonPaymentContainer = styled.button`
     line-height: 160%;
     color: ${(props) => props.theme['base-text']};
   }
+
+  &:hover {
+    background-color: ${(props) => props.theme['base-hover']};
+  }
+
+  &:focus {
+    border: 1px solid ${(props) => props.theme.purple};
+    background-color: ${(props) => props.theme['purple-light']};
+  }
+`
+
+export const CoffeesSelectedContainer = styled.div`
+  width: 28rem;
+
+  border-radius: 6px 44px 6px 44px;
+  padding: 1rem 2.5rem 2.5rem;
+
+  background-color: ${(props) => props.theme['base-card']};
+`
+
+export const RequestInfoContainer = styled.div``
+
+export const ValuesCoffeeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  margin: 1.5rem 0;
+
+  font-family: 'Roboto', sans-serif;
+`
+
+const TotalContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+export const TotalItemsContainer = styled(TotalContainer)`
+  font-size: 0.875rem;
+  color: ${(props) => props.theme['base-text']};
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+`
+
+export const AllTotalContainer = styled(TotalContainer)`
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: ${(props) => props.theme['base-subtitle']};
+`
+
+export const ConfirmRequest = styled.div`
+  display: flex;
+  justify-content: center;
+
+  button {
+    width: 23rem;
+    height: 2.875rem;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: ${(props) => props.theme.yellow};
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.875rem;
+    color: ${(props) => props.theme.white};
+    font-weight: 700;
+
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${(props) => props.theme['yellow-dark']};
+    }
+  }
 `
