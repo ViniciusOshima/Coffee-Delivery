@@ -1,9 +1,20 @@
 import { MapPinLine } from 'phosphor-react'
 
 import {
+  BairroInputContainer,
+  CEPInputContainer,
   CheckoutContainer,
+  CidadeInputContainer,
   CoffeesSelected,
-  CompleteYourRequest
+  ComplementoInputContainer,
+  CompleteYourRequest,
+  FormContainer,
+  FormDescription,
+  FormSection,
+  MoreThanOneInputContainer,
+  NumeroInputContainer,
+  RuaInputInputContainer,
+  UFInputContainer
 } from './styles'
 
 export function Checkout() {
@@ -13,33 +24,41 @@ export function Checkout() {
         <h2>Complete seu pedido</h2>
 
         <div>
-          <div>
-            <div>
-              <MapPinLine />
+          <FormSection>
+            <FormDescription>
+              <MapPinLine size={22} />
               <div>
                 <h3>Endereço de entrega</h3>
                 <p>Informe o endereço onde deseja receber seu pedido</p>
               </div>
-            </div>
+            </FormDescription>
 
-            <div>
+            <FormContainer>
               <form action="">
-                <input type="number" placeholder="CEP" />
-                <input type="text" placeholder="Rua" />
-
                 <div>
-                  <input type="number" placeholder="Número" />
-                  <input type="text" placeholder="Complemento" />
+                  <CEPInputContainer type="number" placeholder="CEP" />
                 </div>
 
                 <div>
-                  <input type="text" placeholder="Bairro" />
-                  <input type="text" placeholder="Cidade" />
-                  <input type="text" placeholder="UF" />
+                  <RuaInputInputContainer type="text" placeholder="Rua" />
                 </div>
+
+                <MoreThanOneInputContainer>
+                  <NumeroInputContainer type="number" placeholder="Número" />
+                  <ComplementoInputContainer
+                    type="text"
+                    placeholder="Complemento"
+                  />
+                </MoreThanOneInputContainer>
+
+                <MoreThanOneInputContainer>
+                  <BairroInputContainer type="text" placeholder="Bairro" />
+                  <CidadeInputContainer type="text" placeholder="Cidade" />
+                  <UFInputContainer type="text" placeholder="UF" />
+                </MoreThanOneInputContainer>
               </form>
-            </div>
-          </div>
+            </FormContainer>
+          </FormSection>
 
           <div>Pagamento</div>
         </div>
