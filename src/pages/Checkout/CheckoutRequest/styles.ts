@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const CheckoutContainer = styled.div`
+export const CheckoutContainer = styled.form`
   width: 100%;
   max-width: 70rem;
   margin: 2.5rem auto;
@@ -60,9 +60,6 @@ export const FormDescription = styled.div`
 
 export const FormContainer = styled.div`
   display: flex;
-
-  form {
-    display: flex;
     flex-direction: column;
     gap: 16px;
 
@@ -74,6 +71,8 @@ export const FormContainer = styled.div`
       padding: 0.75rem;
       border-radius: 4px;
       border: 1px solid ${(props) => props.theme['base-button']};
+      box-shadow: none;
+      outline: none;
 
       background-color: ${(props) => props.theme['base-input']};
 
@@ -83,8 +82,11 @@ export const FormContainer = styled.div`
       &::placeholder {
         color: ${(props) => props.theme['base-label']};
       }
+
+      &:focus {
+        outline: 1px solid ${(props) => props.theme['yellow-dark']};
+      }
     }
-  }
 `
 
 export const CEPInputContainer = styled.input`

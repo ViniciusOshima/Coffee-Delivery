@@ -41,17 +41,6 @@ export function CardCoffee({
   function handlePlusAmount() {
     if (howMany < 3) {
       setHowMany(howMany + 1)
-
-      switch (howMany) {
-        case 1:
-          setHowMuch('9,90')
-          break
-        case 2:
-          setHowMuch('19,80')
-          break
-        case 3:
-          setHowMuch('29,70')
-      }
     }
   }
 

@@ -5,6 +5,9 @@ import {
   MapPinLine,
   Money
 } from 'phosphor-react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as zod from 'zod'
 
 import {
   AllTotalContainer,
@@ -35,9 +38,40 @@ import {
 } from './styles'
 import { CardCheckout } from '../CardsCheckout'
 
+const newAdressFormValidationSchema = zod.object({
+  CEP: zod.number().min(8),
+  Rua: zod.string().min(1, 'Informe sua rua'),
+  Número: zod.number().min(1),
+  Complemento: zod.string(),
+  Bairro: zod.string().min(1, 'Informe seu bairro'),
+  Cidade: zod.string().min(1, 'Informe sua cidade'),
+  UF: zod.string().min(2).max(2)
+})
+
+type NewAdressFormData = zod.infer<typeof newAdressFormValidationSchema>
+
 export function Checkout() {
+  const { register, handleSubmit, reset } = useForm<NewAdressFormData>({
+    resolver: zodResolver(newAdressFormValidationSchema),
+    defaultValues: {
+      CEP: undefined,
+      Rua: '',
+      Número: undefined,
+      Complemento: '',
+      Bairro: '',
+      Cidade: '',
+      UF: ''
+    }
+  })
+
+  function handleSubmitAdress(data: NewAdressFormData) {
+    console.log(data)
+
+    reset()
+  }
+
   return (
-    <CheckoutContainer>
+    <CheckoutContainer action="" onSubmit={handleSubmit(handleSubmitAdress)}>
       <CompleteYourRequest>
         <TitlesCheckoutContainer>Complete seu pedido</TitlesCheckoutContainer>
 
@@ -52,29 +86,52 @@ export function Checkout() {
             </FormDescription>
 
             <FormContainer>
-              <form action="">
-                <div>
-                  <CEPInputContainer type="number" placeholder="CEP" />
-                </div>
+              <div>
+                <CEPInputContainer
+                  type="number"
+                  placeholder="CEP"
+                  {...register('CEP', { valueAsNumber: true })}
+                />
+              </div>
 
-                <div>
-                  <RuaInputInputContainer type="text" placeholder="Rua" />
-                </div>
+              <div>
+                <RuaInputInputContainer
+                  type="text"
+                  placeholder="Rua"
+                  {...register('Rua')}
+                />
+              </div>
 
-                <MoreThanOneInputContainer>
-                  <NumeroInputContainer type="number" placeholder="Número" />
-                  <ComplementoInputContainer
-                    type="text"
-                    placeholder="Complemento"
-                  />
-                </MoreThanOneInputContainer>
+              <MoreThanOneInputContainer>
+                <NumeroInputContainer
+                  type="number"
+                  placeholder="Número"
+                  {...register('Número', { valueAsNumber: true })}
+                />
+                <ComplementoInputContainer
+                  type="text"
+                  placeholder="Complemento"
+                  {...register('Complemento')}
+                />
+              </MoreThanOneInputContainer>
 
-                <MoreThanOneInputContainer>
-                  <BairroInputContainer type="text" placeholder="Bairro" />
-                  <CidadeInputContainer type="text" placeholder="Cidade" />
-                  <UFInputContainer type="text" placeholder="UF" />
-                </MoreThanOneInputContainer>
-              </form>
+              <MoreThanOneInputContainer>
+                <BairroInputContainer
+                  type="text"
+                  placeholder="Bairro"
+                  {...register('Bairro')}
+                />
+                <CidadeInputContainer
+                  type="text"
+                  placeholder="Cidade"
+                  {...register('Cidade')}
+                />
+                <UFInputContainer
+                  type="text"
+                  placeholder="UF"
+                  {...register('UF')}
+                />
+              </MoreThanOneInputContainer>
             </FormContainer>
           </FormSection>
 
@@ -135,7 +192,7 @@ export function Checkout() {
             </ValuesCoffeeContainer>
 
             <ConfirmRequest>
-              <button>CONFIRMAR PEDIDO</button>
+              <button type="submit">CONFIRMAR PEDIDO</button>
             </ConfirmRequest>
           </RequestInfoContainer>
         </CoffeesSelectedContainer>

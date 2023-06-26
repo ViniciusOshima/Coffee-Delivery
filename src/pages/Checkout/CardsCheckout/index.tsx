@@ -1,5 +1,5 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
-import CafeExpresso from '../../assets/coffees-img/Type=Expresso.svg'
+import CafeExpresso from '../../../assets/coffees-img/Type=Expresso.svg'
 import {
   ButtonsDetailsContainer,
   CardContainer,
