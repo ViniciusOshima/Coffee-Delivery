@@ -148,17 +148,17 @@ export function Checkout() {
             </PaymentDescriptionContainer>
 
             <ButtonSectionContainer>
-              <ButtonPaymentContainer>
+              <ButtonPaymentContainer type="button">
                 <CreditCard size={16} />
                 <p>CARTÃO DE CRÉDITO</p>
               </ButtonPaymentContainer>
 
-              <ButtonPaymentContainer>
+              <ButtonPaymentContainer type="button">
                 <Bank size={16} />
                 <p>CARTÃO DE DÉBITO</p>
               </ButtonPaymentContainer>
 
-              <ButtonPaymentContainer>
+              <ButtonPaymentContainer type="button">
                 <Money size={16} />
                 <p>DINHEIRO</p>
               </ButtonPaymentContainer>

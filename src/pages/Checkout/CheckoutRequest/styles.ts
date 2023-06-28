@@ -60,33 +60,33 @@ export const FormDescription = styled.div`
 
 export const FormContainer = styled.div`
   display: flex;
-    flex-direction: column;
-    gap: 16px;
+  flex-direction: column;
+  gap: 16px;
 
-    padding-top: 2rem;
+  padding-top: 2rem;
 
-    input {
-      height: 2.625rem;
+  input {
+    height: 2.625rem;
 
-      padding: 0.75rem;
-      border-radius: 4px;
-      border: 1px solid ${(props) => props.theme['base-button']};
-      box-shadow: none;
-      outline: none;
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid ${(props) => props.theme['base-button']};
+    box-shadow: none;
+    outline: none;
 
-      background-color: ${(props) => props.theme['base-input']};
+    background-color: ${(props) => props.theme['base-input']};
 
-      font-family: 'Roboto', sans-serif;
-      font-size: 0.875rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.875rem;
 
-      &::placeholder {
-        color: ${(props) => props.theme['base-label']};
-      }
-
-      &:focus {
-        outline: 1px solid ${(props) => props.theme['yellow-dark']};
-      }
+    &::placeholder {
+      color: ${(props) => props.theme['base-label']};
     }
+
+    &:focus {
+      outline: 1px solid ${(props) => props.theme['yellow-dark']};
+    }
+  }
 `
 
 export const CEPInputContainer = styled.input`

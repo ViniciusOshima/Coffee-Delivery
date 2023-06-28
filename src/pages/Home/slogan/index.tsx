@@ -34,6 +34,13 @@ import {
 } from './styles'
 
 import { CardCoffee } from '../cardCoffee'
+import { useState } from 'react'
+
+export interface CoffeesSelectedType {
+  name: string
+  howMany: number
+  photo: string
+}
 
 export function Home() {
   const coffee = [
@@ -41,35 +48,30 @@ export function Home() {
       name: 'Expresso Tradicional',
       data: ['TRADICIOAL'],
       description: 'O tradicional café feito com água quente e grãos moídos',
-      howMany: 1,
       photo: ExpressoTradicional
     },
     {
       name: 'Expresso Americano',
       data: ['TRADICIOAL'],
       description: 'Expresso diluído, menos intenso que o tradicional',
-      howMany: 1,
       photo: ExpressoAmericano
     },
     {
       name: 'Expresso Cremoso',
       data: ['TRADICIOAL'],
       description: 'Café expresso tradicional com espuma cremosa',
-      howMany: 1,
       photo: ExpressoCremoso
     },
     {
       name: 'Expresso Gelado',
       data: ['TRADICIOAL', 'GELADO'],
       description: 'Bebida preparada com café expresso e cubos de gelo',
-      howMany: 1,
       photo: ExpressoGelado
     },
     {
       name: 'Café com Leite',
       data: ['TRADICIOAL', 'COM LEITE'],
       description: 'Meio a meio de expresso tradicional com leite vaporizado',
-      howMany: 1,
       photo: CafeComLeite
     },
     {
@@ -77,7 +79,6 @@ export function Home() {
       data: ['TRADICIOAL', 'COM LEITE'],
       description:
         'Uma dose de café expresso com o dobro de leite e espuma cremosa',
-      howMany: 1,
       photo: Latte
     },
     {
@@ -85,7 +86,6 @@ export function Home() {
       data: ['TRADICIOAL', 'COM LEITE'],
       description:
         'Bebida com canela feita de doses iguais de café, leite e espuma',
-      howMany: 1,
       photo: Capuccino
     },
     {
@@ -93,14 +93,12 @@ export function Home() {
       data: ['TRADICIOAL', 'COM LEITE'],
       description:
         'Café expresso misturado com um pouco de leite quente e espuma',
-      howMany: 1,
       photo: Macchiato
     },
     {
       name: 'Mocaccino',
       data: ['TRADICIOAL', 'COM-LEITE'],
       description: 'Café expresso com calda de chocolate, pouco leite e espuma',
-      howMany: 1,
       photo: Mocaccino
     },
     {
@@ -108,7 +106,6 @@ export function Home() {
       data: ['ESPECIAL', 'COM LEITE'],
       description:
         'Bebida feita com chocolate dissolvido no leite quente e café',
-      howMany: 1,
       photo: ChocolateQuente
     },
     {
@@ -116,31 +113,40 @@ export function Home() {
       data: ['ESPECIAL', 'ALCOÓLICO', 'GELADO'],
       description:
         'Drink gelado de café expresso com rum, creme de leite e hortelã',
-      howMany: 1,
       photo: Cubano
     },
     {
       name: 'Havaiano',
       data: ['ESPECIAL'],
       description: 'Bebida adocicada preparada com café e leite de coco',
-      howMany: 1,
       photo: Havaiano
     },
     {
       name: 'Árabe',
       data: ['ESPECIAL'],
       description: 'Bebida preparada com grãos de café árabe e especiarias',
-      howMany: 1,
       photo: Arabe
     },
     {
       name: 'Irlandês',
       data: ['ESPECIAL', 'ALCOÓLICO'],
       description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
-      howMany: 1,
       photo: Irlandes
     }
   ]
+
+  const [coffeesSelected, setCoffeesSelected] = useState<CoffeesSelectedType[]>(
+    []
+  )
+
+  function newCoffeeSelected(item: CoffeesSelectedType) {
+    setCoffeesSelected([
+      ...coffeesSelected,
+      { name: item.name, photo: item.photo, howMany: item.howMany }
+    ])
+  }
+
+  console.log(coffeesSelected)
 
   return (
     <>
@@ -205,8 +211,8 @@ export function Home() {
                 name={item.name}
                 data={item.data}
                 description={item.description}
-                howMany={item.howMany}
-                photos={item.photo}
+                photo={item.photo}
+                newCoffeeSelected={newCoffeeSelected}
               />
             )
           })}

@@ -14,19 +14,22 @@ import {
   ButtonShoppingCart
 } from './styles'
 import { useEffect, useState } from 'react'
+import { CoffeesSelectedType } from '../slogan'
 
 interface CardCoffeeType {
   name: string
   data: string[]
   description: string
-  photos: string
+  photo: string
+  newCoffeeSelected: (item: CoffeesSelectedType) => void
 }
 
 export function CardCoffee({
   name,
   data,
   description,
-  photos
+  photo,
+  newCoffeeSelected
 }: CardCoffeeType) {
   const [howMany, setHowMany] = useState(1)
 
@@ -42,6 +45,16 @@ export function CardCoffee({
     if (howMany < 3) {
       setHowMany(howMany + 1)
     }
+  }
+
+  function handleSelectCoffee() {
+    const newCoffee = {
+      name,
+      photo,
+      howMany
+    }
+
+    newCoffeeSelected(newCoffee)
   }
 
   useEffect(() => {
@@ -60,7 +73,7 @@ export function CardCoffee({
   return (
     <CardContainer>
       <ImgCardContainer>
-        <img src={photos} alt="" />
+        <img src={photo} alt="" />
       </ImgCardContainer>
 
       <CoffeeDatasContainerAround>
@@ -108,7 +121,7 @@ export function CardCoffee({
             </button>
           </HowManyContainer>
 
-          <ButtonShoppingCart>
+          <ButtonShoppingCart onClick={handleSelectCoffee}>
             <ShoppingCart size={22} weight="fill" />
           </ButtonShoppingCart>
         </ButtomsCardContainer>
