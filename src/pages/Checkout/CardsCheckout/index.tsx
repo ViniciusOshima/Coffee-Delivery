@@ -1,5 +1,4 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
-import CafeExpresso from '../../../assets/coffees-img/Type=Expresso.svg'
 import {
   ButtonsDetailsContainer,
   CardContainer,
@@ -10,13 +9,13 @@ import {
   ValueCoffeeCardContainer
 } from './styles'
 
-export function CardCheckout() {
+export function CardCheckout({ name, howMany, howMuch, photo }) {
   return (
     <CardContainer>
       <InfoCardContainer>
-        <img src={CafeExpresso} alt="" />
+        <img src={photo} alt="" />
         <DetailsContainer>
-          <h2>Expresso Tradicional</h2>
+          <h2>{name}</h2>
 
           <ButtonsDetailsContainer>
             <HowManyContainer>
@@ -24,7 +23,7 @@ export function CardCheckout() {
                 <Minus size={14} />
               </button>
 
-              <p>1</p>
+              <p>{howMany}</p>
 
               <button>
                 <Plus size={14} />
@@ -39,7 +38,7 @@ export function CardCheckout() {
         </DetailsContainer>
       </InfoCardContainer>
 
-      <ValueCoffeeCardContainer>R$ 9,90</ValueCoffeeCardContainer>
+      <ValueCoffeeCardContainer>R$ {howMuch}</ValueCoffeeCardContainer>
     </CardContainer>
   )
 }

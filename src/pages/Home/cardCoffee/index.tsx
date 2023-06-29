@@ -13,24 +13,15 @@ import {
   CoffeeDatasContainerAround,
   ButtonShoppingCart
 } from './styles'
-import { useEffect, useState } from 'react'
-import { CoffeesSelectedType } from '../slogan'
+import { useContext, useEffect, useState } from 'react'
+import {
+  AllCoffeesType,
+  CoffeesContext
+} from '../../../contexts/CoffeesContext'
 
-interface CardCoffeeType {
-  name: string
-  data: string[]
-  description: string
-  photo: string
-  newCoffeeSelected: (item: CoffeesSelectedType) => void
-}
+export function CardCoffee({ name, data, description, photo }: AllCoffeesType) {
+  const { newCoffeeSelected } = useContext(CoffeesContext)
 
-export function CardCoffee({
-  name,
-  data,
-  description,
-  photo,
-  newCoffeeSelected
-}: CardCoffeeType) {
   const [howMany, setHowMany] = useState(1)
 
   const [howMuch, setHowMuch] = useState('9,90')
@@ -51,7 +42,8 @@ export function CardCoffee({
     const newCoffee = {
       name,
       photo,
-      howMany
+      howMany,
+      howMuch
     }
 
     newCoffeeSelected(newCoffee)

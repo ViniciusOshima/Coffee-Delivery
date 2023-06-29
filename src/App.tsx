@@ -5,12 +5,15 @@ import { GlobalStyle } from './styles/global'
 
 import { Router } from './Router'
 import { BrowserRouter } from 'react-router-dom'
+import { CoffeesContextProvider } from './contexts/CoffeesContext'
 
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
-        <Router />
+        <CoffeesContextProvider>
+          <Router />
+        </CoffeesContextProvider>
       </BrowserRouter>
       <GlobalStyle />
     </ThemeProvider>

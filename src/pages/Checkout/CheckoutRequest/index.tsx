@@ -37,6 +37,8 @@ import {
   ValuesCoffeeContainer
 } from './styles'
 import { CardCheckout } from '../CardsCheckout'
+import { useContext } from 'react'
+import { CoffeesContext } from '../../../contexts/CoffeesContext'
 
 const newAdressFormValidationSchema = zod.object({
   CEP: zod.number().min(8),
@@ -51,6 +53,8 @@ const newAdressFormValidationSchema = zod.object({
 type NewAdressFormData = zod.infer<typeof newAdressFormValidationSchema>
 
 export function Checkout() {
+  const { coffeesSelected } = useContext(CoffeesContext)
+
   const { register, handleSubmit, reset } = useForm<NewAdressFormData>({
     resolver: zodResolver(newAdressFormValidationSchema),
     defaultValues: {
@@ -171,8 +175,16 @@ export function Checkout() {
         <TitlesCheckoutContainer>Cafés selecionados</TitlesCheckoutContainer>
 
         <CoffeesSelectedContainer>
-          <CardCheckout />
-
+          {coffeesSelected.map(coffee => {
+            return (
+              <CardCheckout
+                name={coffee.name}
+                howMany={coffee.howMany}
+                howMuch={coffee.howMuch}
+                photo={coffee.photo}
+              />
+            )
+          })}
           <RequestInfoContainer>
             <ValuesCoffeeContainer>
               <TotalItemsContainer>
