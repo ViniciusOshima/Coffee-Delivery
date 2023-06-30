@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const CardContainer = styled.div`
   display: flex;
-  gap: 3.125rem;
+  justify-content: space-between;
 
   padding: 1.5rem 0;
   border-bottom: 1px solid ${(props) => props.theme['base-button']};

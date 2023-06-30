@@ -20,7 +20,7 @@ import {
 } from '../../../contexts/CoffeesContext'
 
 export function CardCoffee({ name, data, description, photo }: AllCoffeesType) {
-  const { newCoffeeSelected } = useContext(CoffeesContext)
+  const { newCoffeeSelected, howMuchIsTotal } = useContext(CoffeesContext)
 
   const [howMany, setHowMany] = useState(1)
 
@@ -47,6 +47,7 @@ export function CardCoffee({ name, data, description, photo }: AllCoffeesType) {
     }
 
     newCoffeeSelected(newCoffee)
+    howMuchIsTotal(howMuch)
   }
 
   useEffect(() => {

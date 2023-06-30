@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useEffect, useState } from 'react'
 
 import ExpressoTradicional from '../assets/coffees-img/Type=Expresso.svg'
 import ExpressoAmericano from '../assets/coffees-img/Type=Americano.svg'
@@ -31,8 +31,12 @@ export interface AllCoffeesType {
 
 interface CoffeesContextType {
   coffee: AllCoffeesType
-  newCoffeeSelected: (item: CoffeesSelectedType) => void
   coffeesSelected: CoffeesSelectedType
+  valueAsString: string
+  totalValueFrete: string
+  frete: string
+  newCoffeeSelected: (item: CoffeesSelectedType) => void
+  howMuchIsTotal: (item: string) => void
 }
 
 interface CoffeesContextProviderProps {
@@ -140,6 +144,14 @@ export function CoffeesContextProvider({
     []
   )
 
+  const [totalValue, setTotalValue] = useState(0)
+
+  const [valueAsString, setValueAsString] = useState('0,0')
+
+  const [frete, setFrete] = useState('0,0')
+
+  const [totalValueFrete, setTotalValueFrete] = useState('0')
+
   function newCoffeeSelected(item: CoffeesSelectedType) {
     setCoffeesSelected([
       ...coffeesSelected,
@@ -152,14 +164,34 @@ export function CoffeesContextProvider({
     ])
   }
 
-  console.log(coffeesSelected)
+  function howMuchIsTotal(item: string) {
+    const valueAsNumber = Number(item.replace(',', '.'))
+    setTotalValue(totalValue + valueAsNumber)
+  }
+
+  useEffect(() => {
+    if (totalValue) {
+      setValueAsString(String(totalValue).replace('.', ',') + '0')
+      setTotalValueFrete(String(totalValue + 3.5).replace('.', ',') + '0')
+    }
+
+    if (coffeesSelected.length > 0) {
+      setFrete('3,50')
+    } else {
+      setFrete('0,0')
+    }
+  }, [coffeesSelected.length, totalValue])
 
   return (
     <CoffeesContext.Provider
       value={{
         coffee,
         newCoffeeSelected,
-        coffeesSelected
+        coffeesSelected,
+        howMuchIsTotal,
+        valueAsString,
+        totalValueFrete,
+        frete
       }}
     >
       {children}

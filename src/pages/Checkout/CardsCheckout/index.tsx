@@ -8,8 +8,14 @@ import {
   RemoveButtonContainer,
   ValueCoffeeCardContainer
 } from './styles'
+import { CoffeesSelectedType } from '../../../contexts/CoffeesContext'
 
-export function CardCheckout({ name, howMany, howMuch, photo }) {
+export function CardCheckout({
+  name,
+  howMany,
+  howMuch,
+  photo
+}: CoffeesSelectedType) {
   return (
     <CardContainer>
       <InfoCardContainer>

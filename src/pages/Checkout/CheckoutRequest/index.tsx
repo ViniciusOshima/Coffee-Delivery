@@ -53,7 +53,8 @@ const newAdressFormValidationSchema = zod.object({
 type NewAdressFormData = zod.infer<typeof newAdressFormValidationSchema>
 
 export function Checkout() {
-  const { coffeesSelected } = useContext(CoffeesContext)
+  const { coffeesSelected, valueAsString, totalValueFrete, frete } =
+    useContext(CoffeesContext)
 
   const { register, handleSubmit, reset } = useForm<NewAdressFormData>({
     resolver: zodResolver(newAdressFormValidationSchema),
@@ -189,17 +190,17 @@ export function Checkout() {
             <ValuesCoffeeContainer>
               <TotalItemsContainer>
                 <p>Total de itens</p>
-                <h3>R$29,70</h3>
+                <h3>R$ {valueAsString}</h3>
               </TotalItemsContainer>
 
               <TotalItemsContainer>
                 <p>entrega</p>
-                <h3>R$3,50</h3>
+                <h3>R$ {frete}</h3>
               </TotalItemsContainer>
 
               <AllTotalContainer>
                 <h3>Total</h3>
-                <h3>R$33,20</h3>
+                <h3>R$ {totalValueFrete}</h3>
               </AllTotalContainer>
             </ValuesCoffeeContainer>
 
