@@ -11,57 +11,25 @@ import {
   ImgCardContainer,
   ValueCoffeeContainer,
   CoffeeDatasContainerAround,
-  ButtonShoppingCart
+  ButtonShoppingCart,
 } from './styles'
-import { useContext, useEffect, useState } from 'react'
-import {
-  AllCoffeesType,
-  CoffeesContext
-} from '../../../contexts/CoffeesContext'
+import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { CoffeesContext } from '../../../contexts/CoffeesContext'
+import { Coffee } from '../../../mock/coffeesList'
 
-export function CardCoffee({ name, data, description, photo }: AllCoffeesType) {
-  const { newCoffeeSelected, howMuchIsTotal } = useContext(CoffeesContext)
+export function CardCoffee({
+  name,
+  categories,
+  description,
+  photo,
+  price,
+  id,
+}: Coffee) {
+  const { handleAddCoffeeById, handleDecrementCoffeeById, getQuantityById } =
+    useContext(CoffeesContext)
 
-  const [howMany, setHowMany] = useState(1)
-
-  const [howMuch, setHowMuch] = useState('9,90')
-
-  function handleMinusAmount() {
-    if (howMany > 1) {
-      setHowMany(howMany - 1)
-    }
-  }
-
-  function handlePlusAmount() {
-    if (howMany < 3) {
-      setHowMany(howMany + 1)
-    }
-  }
-
-  function handleSelectCoffee() {
-    const newCoffee = {
-      name,
-      photo,
-      howMany,
-      howMuch
-    }
-
-    newCoffeeSelected(newCoffee)
-    howMuchIsTotal(howMuch)
-  }
-
-  useEffect(() => {
-    switch (howMany) {
-      case 1:
-        setHowMuch('9,90')
-        break
-      case 2:
-        setHowMuch('19,80')
-        break
-      case 3:
-        setHowMuch('29,70')
-    }
-  }, [howMany])
+  const navigate = useNavigate()
 
   return (
     <CardContainer>
@@ -70,21 +38,13 @@ export function CardCoffee({ name, data, description, photo }: AllCoffeesType) {
       </ImgCardContainer>
 
       <CoffeeDatasContainerAround>
-        <CoffeeDatasContainer>
-          <h2>{data[0]}</h2>
-        </CoffeeDatasContainer>
-
-        {data[1] && (
-          <CoffeeDatasContainer>
-            <h2>{data[1]}</h2>
-          </CoffeeDatasContainer>
-        )}
-
-        {data[2] && (
-          <CoffeeDatasContainer>
-            <h2>{data[2]}</h2>
-          </CoffeeDatasContainer>
-        )}
+        {categories.map((category) => {
+          return (
+            <CoffeeDatasContainer key={category}>
+              <h2>{category}</h2>
+            </CoffeeDatasContainer>
+          )
+        })}
       </CoffeeDatasContainerAround>
 
       <CoffeeNameContainer>
@@ -98,23 +58,23 @@ export function CardCoffee({ name, data, description, photo }: AllCoffeesType) {
       <ButtomValueCardContainer>
         <ValueCoffeeContainer>
           <p>R$</p>
-          <h3>{howMuch}</h3>
+          <h3>{price}</h3>
         </ValueCoffeeContainer>
 
         <ButtomsCardContainer>
           <HowManyContainer>
-            <button onClick={handleMinusAmount}>
+            <button onClick={() => handleDecrementCoffeeById(id)}>
               <Minus size={14} />
             </button>
 
-            <p>{howMany}</p>
+            <p>{getQuantityById(id)}</p>
 
-            <button onClick={handlePlusAmount}>
+            <button onClick={() => handleAddCoffeeById(id)}>
               <Plus size={14} />
             </button>
           </HowManyContainer>
 
-          <ButtonShoppingCart onClick={handleSelectCoffee}>
+          <ButtonShoppingCart onClick={() => navigate('/checkout')}>
             <ShoppingCart size={22} weight="fill" />
           </ButtonShoppingCart>
         </ButtomsCardContainer>

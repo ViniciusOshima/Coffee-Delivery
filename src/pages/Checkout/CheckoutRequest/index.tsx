@@ -3,7 +3,7 @@ import {
   CreditCard,
   CurrencyDollar,
   MapPinLine,
-  Money
+  Money,
 } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -34,7 +34,7 @@ import {
   TitlesCheckoutContainer,
   TotalItemsContainer,
   UFInputContainer,
-  ValuesCoffeeContainer
+  ValuesCoffeeContainer,
 } from './styles'
 import { CardCheckout } from '../CardsCheckout'
 import { useContext } from 'react'
@@ -47,14 +47,13 @@ const newAdressFormValidationSchema = zod.object({
   Complemento: zod.string(),
   Bairro: zod.string().min(1, 'Informe seu bairro'),
   Cidade: zod.string().min(1, 'Informe sua cidade'),
-  UF: zod.string().min(2).max(2)
+  UF: zod.string().min(2).max(2),
 })
 
 type NewAdressFormData = zod.infer<typeof newAdressFormValidationSchema>
 
 export function Checkout() {
-  const { coffeesSelected, valueAsString, totalValueFrete, frete } =
-    useContext(CoffeesContext)
+  const { cart } = useContext(CoffeesContext)
 
   const { register, handleSubmit, reset } = useForm<NewAdressFormData>({
     resolver: zodResolver(newAdressFormValidationSchema),
@@ -65,8 +64,8 @@ export function Checkout() {
       Complemento: '',
       Bairro: '',
       Cidade: '',
-      UF: ''
-    }
+      UF: '',
+    },
   })
 
   function handleSubmitAdress(data: NewAdressFormData) {
@@ -176,13 +175,14 @@ export function Checkout() {
         <TitlesCheckoutContainer>Cafés selecionados</TitlesCheckoutContainer>
 
         <CoffeesSelectedContainer>
-          {coffeesSelected.map(coffee => {
+          {cart.map((coffee) => {
             return (
               <CardCheckout
+                key={coffee.id}
                 name={coffee.name}
-                howMany={coffee.howMany}
-                howMuch={coffee.howMuch}
                 photo={coffee.photo}
+                id={coffee.id}
+                price={coffee.price}
               />
             )
           })}
@@ -190,17 +190,17 @@ export function Checkout() {
             <ValuesCoffeeContainer>
               <TotalItemsContainer>
                 <p>Total de itens</p>
-                <h3>R$ {valueAsString}</h3>
+                <h3>R$ 33.30</h3>
               </TotalItemsContainer>
 
               <TotalItemsContainer>
                 <p>entrega</p>
-                <h3>R$ {frete}</h3>
+                <h3>R$ 3.50</h3>
               </TotalItemsContainer>
 
               <AllTotalContainer>
                 <h3>Total</h3>
-                <h3>R$ {totalValueFrete}</h3>
+                <h3>R$ 33.50</h3>
               </AllTotalContainer>
             </ValuesCoffeeContainer>
 

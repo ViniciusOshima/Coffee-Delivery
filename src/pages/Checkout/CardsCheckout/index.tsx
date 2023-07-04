@@ -6,16 +6,29 @@ import {
   HowManyContainer,
   InfoCardContainer,
   RemoveButtonContainer,
-  ValueCoffeeCardContainer
+  ValueCoffeeCardContainer,
 } from './styles'
-import { CoffeesSelectedType } from '../../../contexts/CoffeesContext'
 
-export function CardCheckout({
-  name,
-  howMany,
-  howMuch,
-  photo
-}: CoffeesSelectedType) {
+import { useCoffee } from '../../../contexts/CoffeesContext'
+import { formatCurrency } from '../../../utils/currency/format'
+
+type CardCheckoutProps = {
+  name: string
+  photo: string
+  id: string
+  price: number
+}
+
+export function CardCheckout({ name, photo, id, price }: CardCheckoutProps) {
+  const {
+    handleAddCoffeeById,
+    getQuantityById,
+    handleDecrementCoffeeById,
+    handleRemoveCoffeById,
+  } = useCoffee()
+
+  const quantity = getQuantityById(id)
+
   return (
     <CardContainer>
       <InfoCardContainer>
@@ -25,18 +38,18 @@ export function CardCheckout({
 
           <ButtonsDetailsContainer>
             <HowManyContainer>
-              <button>
+              <button onClick={() => handleDecrementCoffeeById(id)}>
                 <Minus size={14} />
               </button>
 
-              <p>{howMany}</p>
+              <p>{quantity}</p>
 
-              <button>
+              <button onClick={() => handleAddCoffeeById(id)}>
                 <Plus size={14} />
               </button>
             </HowManyContainer>
 
-            <RemoveButtonContainer>
+            <RemoveButtonContainer onClick={() => handleRemoveCoffeById(id)}>
               <Trash size={16} />
               <p>REMOVER</p>
             </RemoveButtonContainer>
@@ -44,7 +57,9 @@ export function CardCheckout({
         </DetailsContainer>
       </InfoCardContainer>
 
-      <ValueCoffeeCardContainer>R$ {howMuch}</ValueCoffeeCardContainer>
+      <ValueCoffeeCardContainer>
+        {formatCurrency(price * quantity)}
+      </ValueCoffeeCardContainer>
     </CardContainer>
   )
 }
