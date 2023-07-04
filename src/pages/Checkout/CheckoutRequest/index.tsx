@@ -39,6 +39,7 @@ import {
 import { CardCheckout } from '../CardsCheckout'
 import { useContext } from 'react'
 import { CoffeesContext } from '../../../contexts/CoffeesContext'
+import { formatCurrency } from '../../../utils/currency/format'
 
 const newAdressFormValidationSchema = zod.object({
   CEP: zod.number().min(8),
@@ -53,7 +54,7 @@ const newAdressFormValidationSchema = zod.object({
 type NewAdressFormData = zod.infer<typeof newAdressFormValidationSchema>
 
 export function Checkout() {
-  const { cart } = useContext(CoffeesContext)
+  const { cart, totalValue } = useContext(CoffeesContext)
 
   const { register, handleSubmit, reset } = useForm<NewAdressFormData>({
     resolver: zodResolver(newAdressFormValidationSchema),
@@ -190,17 +191,17 @@ export function Checkout() {
             <ValuesCoffeeContainer>
               <TotalItemsContainer>
                 <p>Total de itens</p>
-                <h3>R$ 33.30</h3>
+                <h3>{formatCurrency(totalValue)}</h3>
               </TotalItemsContainer>
 
               <TotalItemsContainer>
                 <p>entrega</p>
-                <h3>R$ 3.50</h3>
+                <h3>R$ 3,50</h3>
               </TotalItemsContainer>
 
               <AllTotalContainer>
                 <h3>Total</h3>
-                <h3>R$ 33.50</h3>
+                <h3>{formatCurrency(totalValue + 3.5)}</h3>
               </AllTotalContainer>
             </ValuesCoffeeContainer>
 

@@ -1,4 +1,10 @@
-import { ReactNode, createContext, useState, useContext } from 'react'
+import {
+  ReactNode,
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+} from 'react'
 import { Coffee, coffeesList } from '../mock/coffeesList'
 
 type Cart = Array<
@@ -9,6 +15,7 @@ type Cart = Array<
 
 interface CoffeesContextType {
   cart: Cart
+  totalValue: number
   handleAddCoffeeById: (id: string) => void
   handleDecrementCoffeeById: (id: string) => void
   handleRemoveCoffeById: (id: string) => void
@@ -25,6 +32,8 @@ export function CoffeesContextProvider({
   children,
 }: CoffeesContextProviderProps) {
   const [cart, setCart] = useState<Cart>([])
+
+  const [totalValue, setTotalValue] = useState<number>(0)
 
   const handleAddCoffeeById = (id: string) => {
     const coffeeOnCart = cart.find((coffee) => coffee.id === id)
@@ -97,10 +106,29 @@ export function CoffeesContextProvider({
     }
   }
 
+  useEffect(() => {
+    if (cart) {
+      const quantityCoffees = cart.map((coffee) => {
+        return coffee.quantity * 9.9
+      })
+
+      let total = 0
+
+      for (let i = 0; i < quantityCoffees.length; i++) {
+        total += quantityCoffees[i]
+
+        setTotalValue(total)
+      }
+      console.log(quantityCoffees)
+    }
+  }, [cart, totalValue])
+
   return (
     <CoffeesContext.Provider
       value={{
         cart,
+        totalValue,
+
         handleAddCoffeeById,
         handleDecrementCoffeeById,
         handleRemoveCoffeById,
