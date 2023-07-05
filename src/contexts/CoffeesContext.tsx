@@ -109,7 +109,7 @@ export function CoffeesContextProvider({
   useEffect(() => {
     if (cart) {
       const quantityCoffees = cart.map((coffee) => {
-        return coffee.quantity * 9.9
+        return coffee.quantity * coffee.price
       })
 
       let total = 0
@@ -119,7 +119,6 @@ export function CoffeesContextProvider({
 
         setTotalValue(total)
       }
-      console.log(quantityCoffees)
     }
   }, [cart, totalValue])
 

@@ -17,6 +17,7 @@ import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CoffeesContext } from '../../../contexts/CoffeesContext'
 import { Coffee } from '../../../mock/coffeesList'
+import { formatCurrency } from '../../../utils/currency/format'
 
 export function CardCoffee({
   name,
@@ -57,8 +58,7 @@ export function CardCoffee({
 
       <ButtomValueCardContainer>
         <ValueCoffeeContainer>
-          <p>R$</p>
-          <h3>{price}</h3>
+          <h3>{formatCurrency(price)}</h3>
         </ValueCoffeeContainer>
 
         <ButtomsCardContainer>

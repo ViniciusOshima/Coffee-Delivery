@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const HeaderContainer = styled.header`
   width: 100%;
   max-width: 70rem;
-  margin: 2rem auto;
+  margin: 2rem auto 0;
 
   display: flex;
   justify-content: space-between;

@@ -5,6 +5,7 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react'
+import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
@@ -55,6 +56,8 @@ type NewAdressFormData = zod.infer<typeof newAdressFormValidationSchema>
 
 export function Checkout() {
   const { cart, totalValue } = useContext(CoffeesContext)
+
+  const navigate = useNavigate()
 
   const { register, handleSubmit, reset } = useForm<NewAdressFormData>({
     resolver: zodResolver(newAdressFormValidationSchema),
@@ -206,7 +209,9 @@ export function Checkout() {
             </ValuesCoffeeContainer>
 
             <ConfirmRequest>
-              <button type="submit">CONFIRMAR PEDIDO</button>
+              <button type="submit" onClick={() => navigate('/success')}>
+                CONFIRMAR PEDIDO
+              </button>
             </ConfirmRequest>
           </RequestInfoContainer>
         </CoffeesSelectedContainer>

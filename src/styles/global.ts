@@ -11,5 +11,13 @@ export const GlobalStyle = createGlobalStyle`
     background: ${(props) => props.theme.background};
 
     -webkit-font-smoothing: antialiased;
+
+    overflow-x: hidden;
+  }
+
+  @media(max-width: 1200px) {
+    html {
+      font-size: 87.5%;
+    }
   }
 `

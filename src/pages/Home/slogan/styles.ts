@@ -1,11 +1,36 @@
 import styled from 'styled-components'
 
+import bgHome from '../../../assets/Background-Home.svg'
+
+export const ImgContainer = styled.img`
+  width: 29.75rem;
+  height: 22.5rem;
+`
+
 export const HomeContainer = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 3.5rem;
 
-  padding: 5.875rem 0 6.75rem;
+  padding: 5.875rem 10px 6.75rem;
+
+  width: 100%;
+  max-width: 70rem;
+  margin: 0 auto;
+`
+
+export const BackgroundHomeContainer = styled.div`
+  width: 100vw;
+  height: 77vh;
+
+  background-image: url(${bgHome});
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 export const SloganContainer = styled.div`
