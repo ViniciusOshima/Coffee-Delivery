@@ -206,6 +206,33 @@ export const ButtonPaymentContainer = styled.button`
   }
 `
 
+export const ButtonPaymentContainerSelected = styled.button`
+  border: 1px solid ${(props) => props.theme.purple};
+  border-radius: 6px;
+  padding: 1.09375rem 1rem;
+
+  background-color: ${(props) => props.theme['purple-light']};
+
+  width: 11.166875rem;
+  height: 3.1875rem;
+
+  color: ${(props) => props.theme.purple};
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+
+  cursor: pointer;
+
+  p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.75rem;
+    line-height: 160%;
+    color: ${(props) => props.theme['base-text']};
+  }
+`
+
 export const CoffeesSelectedContainer = styled.div`
   width: 28rem;
 

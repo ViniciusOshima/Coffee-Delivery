@@ -36,9 +36,10 @@ import {
   TotalItemsContainer,
   UFInputContainer,
   ValuesCoffeeContainer,
+  ButtonPaymentContainerSelected,
 } from './styles'
 import { CardCheckout } from '../CardsCheckout'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { CoffeesContext } from '../../../contexts/CoffeesContext'
 import { formatCurrency } from '../../../utils/currency/format'
 
@@ -54,10 +55,21 @@ const newAdressFormValidationSchema = zod.object({
 
 type NewAdressFormData = zod.infer<typeof newAdressFormValidationSchema>
 
+interface PaymentMethodProps {
+  anyPayment?: boolean
+  creditCard?: boolean
+  debitCard?: boolean
+  money?: boolean
+}
+
 export function Checkout() {
   const { cart, totalValue } = useContext(CoffeesContext)
 
   const navigate = useNavigate()
+
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethodProps>({
+    anyPayment: true,
+  })
 
   const { register, handleSubmit, reset } = useForm<NewAdressFormData>({
     resolver: zodResolver(newAdressFormValidationSchema),
@@ -73,9 +85,25 @@ export function Checkout() {
   })
 
   function handleSubmitAdress(data: NewAdressFormData) {
-    console.log(data)
+    navigate('/success')
 
     reset()
+  }
+
+  function handlePaymentMethod(method: string) {
+    switch (method) {
+      case 'CARTÃO DE CRÉDITO':
+        setPaymentMethod({ creditCard: true })
+        break
+      case 'CARTÃO DE DÉBITO':
+        setPaymentMethod({ debitCard: true })
+        break
+      case 'DINHEIRO':
+        setPaymentMethod({ money: true })
+        break
+      default:
+        setPaymentMethod({ anyPayment: true })
+    }
   }
 
   return (
@@ -156,20 +184,117 @@ export function Checkout() {
             </PaymentDescriptionContainer>
 
             <ButtonSectionContainer>
-              <ButtonPaymentContainer type="button">
-                <CreditCard size={16} />
-                <p>CARTÃO DE CRÉDITO</p>
-              </ButtonPaymentContainer>
+              {paymentMethod.anyPayment && (
+                <>
+                  <ButtonPaymentContainer
+                    type="button"
+                    onClick={() => handlePaymentMethod('CARTÃO DE CRÉDITO')}
+                  >
+                    <CreditCard size={16} />
+                    <p>CARTÃO DE CRÉDITO</p>
+                  </ButtonPaymentContainer>
 
-              <ButtonPaymentContainer type="button">
-                <Bank size={16} />
-                <p>CARTÃO DE DÉBITO</p>
-              </ButtonPaymentContainer>
+                  <ButtonPaymentContainer
+                    type="button"
+                    onClick={() => handlePaymentMethod('CARTÃO DE DÉBITO')}
+                  >
+                    <Bank size={16} />
+                    <p>CARTÃO DE DÉBITO</p>
+                  </ButtonPaymentContainer>
 
-              <ButtonPaymentContainer type="button">
-                <Money size={16} />
-                <p>DINHEIRO</p>
-              </ButtonPaymentContainer>
+                  <ButtonPaymentContainer
+                    type="button"
+                    onClick={() => handlePaymentMethod('DINHEIRO')}
+                  >
+                    <Money size={16} />
+                    <p>DINHEIRO</p>
+                  </ButtonPaymentContainer>
+                </>
+              )}
+
+              {paymentMethod.creditCard && (
+                <>
+                  <ButtonPaymentContainerSelected
+                    type="button"
+                    onClick={() => handlePaymentMethod('CARTÃO DE CRÉDITO')}
+                  >
+                    <CreditCard size={16} />
+                    <p>CARTÃO DE CRÉDITO</p>
+                  </ButtonPaymentContainerSelected>
+
+                  <ButtonPaymentContainer
+                    type="button"
+                    onClick={() => handlePaymentMethod('CARTÃO DE DÉBITO')}
+                  >
+                    <Bank size={16} />
+                    <p>CARTÃO DE DÉBITO</p>
+                  </ButtonPaymentContainer>
+
+                  <ButtonPaymentContainer
+                    type="button"
+                    onClick={() => handlePaymentMethod('DINHEIRO')}
+                  >
+                    <Money size={16} />
+                    <p>DINHEIRO</p>
+                  </ButtonPaymentContainer>
+                </>
+              )}
+
+              {paymentMethod.debitCard && (
+                <>
+                  <ButtonPaymentContainer
+                    type="button"
+                    onClick={() => handlePaymentMethod('CARTÃO DE CRÉDITO')}
+                  >
+                    <CreditCard size={16} />
+                    <p>CARTÃO DE CRÉDITO</p>
+                  </ButtonPaymentContainer>
+
+                  <ButtonPaymentContainerSelected
+                    type="button"
+                    onClick={() => handlePaymentMethod('CARTÃO DE DÉBITO')}
+                  >
+                    <Bank size={16} />
+                    <p>CARTÃO DE DÉBITO</p>
+                  </ButtonPaymentContainerSelected>
+
+                  <ButtonPaymentContainer
+                    type="button"
+                    onClick={() => handlePaymentMethod('DINHEIRO')}
+                  >
+                    <Money size={16} />
+                    <p>DINHEIRO</p>
+                  </ButtonPaymentContainer>
+                </>
+              )}
+
+              {paymentMethod.money && (
+                <>
+                  <ButtonPaymentContainer
+                    type="button"
+                    onClick={() => handlePaymentMethod('CARTÃO DE CRÉDITO')}
+                  >
+                    <CreditCard size={16} />
+                    <p>CARTÃO DE CRÉDITO</p>
+                  </ButtonPaymentContainer>
+
+                  <ButtonPaymentContainer
+                    type="button"
+                    onClick={() => handlePaymentMethod('CARTÃO DE DÉBITO')}
+                  >
+                    <Bank size={16} />
+                    <p>CARTÃO DE DÉBITO</p>
+                  </ButtonPaymentContainer>
+
+                  <ButtonPaymentContainerSelected
+                    type="button"
+                    onClick={() => handlePaymentMethod('DINHEIRO')}
+                  >
+                    <Money size={16} />
+                    <p>DINHEIRO</p>
+                  </ButtonPaymentContainerSelected>
+                </>
+              )}
             </ButtonSectionContainer>
           </PaymentSectionContainer>
         </div>
@@ -209,9 +334,7 @@ export function Checkout() {
             </ValuesCoffeeContainer>
 
             <ConfirmRequest>
-              <button type="submit" onClick={() => navigate('/success')}>
-                CONFIRMAR PEDIDO
-              </button>
+              <button type="submit">CONFIRMAR PEDIDO</button>
             </ConfirmRequest>
           </RequestInfoContainer>
         </CoffeesSelectedContainer>
