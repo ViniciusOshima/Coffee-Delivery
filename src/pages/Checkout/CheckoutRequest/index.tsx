@@ -312,6 +312,8 @@ export function Checkout() {
                 CONFIRMAR PEDIDO
               </button>
             </ConfirmRequest>
+
+            <div>Desculpe, mas o limite do carrinho são 5 cafés!</div>
           </RequestInfoContainer>
         </CoffeesSelectedContainer>
       </CoffeesSelected>

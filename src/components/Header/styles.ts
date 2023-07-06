@@ -14,17 +14,7 @@ export const HeaderContainer = styled.header`
     gap: 12px;
 
     a {
-      height: 2.125rem;
-
-      padding: 0.5rem;
-      border-radius: 6px;
-
-      background-color: ${(props) => props.theme['yellow-light']};
-
       display: flex;
-      align-items: center;
-
-      color: ${(props) => props.theme['yellow-dark']};
     }
   }
 `
@@ -49,4 +39,38 @@ export const LocationContainer = styled.div`
     font-size: 0.875rem;
     line-height: 130%;
   }
+`
+
+export const ButtonCart = styled.div`
+  height: 2.125rem;
+
+  padding: 0.5rem;
+  border-radius: 6px;
+
+  background-color: ${(props) => props.theme['yellow-light']};
+
+  display: flex;
+  align-items: center;
+
+  color: ${(props) => props.theme['yellow-dark']};
+`
+
+export const QuantinyCoffeesOnCart = styled.div`
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+
+  margin-left: -8px;
+  margin-top: -8px;
+
+  background-color: ${(props) => props.theme['yellow-dark']};
+
+  color: ${(props) => props.theme.white};
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
