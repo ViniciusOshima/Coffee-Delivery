@@ -36,6 +36,7 @@ interface CoffeesContextType {
   totalValue: number
   paymentMethod: PaymentMethodProps
   address: AdressFormData
+  quantityCoffees: number
   handleAddCoffeeById: (id: string) => void
   handleDecrementCoffeeById: (id: string) => void
   handleRemoveCoffeById: (id: string) => void
@@ -70,6 +71,8 @@ export function CoffeesContextProvider({
   const [cart, setCart] = useState<Cart>([])
 
   const [totalValue, setTotalValue] = useState<number>(0)
+
+  const [quantityCoffees, setQuantityCoffees] = useState(0)
 
   const navigate = useNavigate()
 
@@ -171,7 +174,7 @@ export function CoffeesContextProvider({
   useEffect(() => {
     if (cart) {
       const quantityCoffees = cart.map((coffee) => {
-        return coffee.quantity * coffee.price
+        return coffee.quantity
       })
 
       let total = 0
@@ -179,7 +182,8 @@ export function CoffeesContextProvider({
       for (let i = 0; i < quantityCoffees.length; i++) {
         total += quantityCoffees[i]
 
-        setTotalValue(total)
+        setTotalValue(total * 9.9)
+        setQuantityCoffees(total)
       }
     }
   }, [cart, totalValue])
@@ -191,6 +195,7 @@ export function CoffeesContextProvider({
         totalValue,
         paymentMethod,
         address,
+        quantityCoffees,
 
         handleAddCoffeeById,
         handleDecrementCoffeeById,

@@ -4,6 +4,7 @@ import {
   CurrencyDollar,
   MapPinLine,
   Money,
+  Warning,
 } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -36,6 +37,7 @@ import {
   UFInputContainer,
   ValuesCoffeeContainer,
   ButtonPaymentContainerSelected,
+  ErrorCartValidationContainer,
 } from './styles'
 import { CardCheckout } from '../CardsCheckout'
 import { useContext } from 'react'
@@ -55,8 +57,14 @@ const newAdressFormValidationSchema = zod.object({
 type NewAdressFormData = zod.infer<typeof newAdressFormValidationSchema>
 
 export function Checkout() {
-  const { cart, totalValue, submitAdress, handlePaymentMethod, paymentMethod } =
-    useContext(CoffeesContext)
+  const {
+    cart,
+    totalValue,
+    submitAdress,
+    handlePaymentMethod,
+    paymentMethod,
+    quantityCoffees,
+  } = useContext(CoffeesContext)
 
   const { register, handleSubmit, reset } = useForm<NewAdressFormData>({
     resolver: zodResolver(newAdressFormValidationSchema),
@@ -306,14 +314,30 @@ export function Checkout() {
 
             <ConfirmRequest>
               <button
-                disabled={paymentMethod.anyPayment || cart.length === 0}
+                disabled={
+                  paymentMethod.anyPayment ||
+                  cart.length === 0 ||
+                  quantityCoffees > 5
+                }
                 type="submit"
               >
                 CONFIRMAR PEDIDO
               </button>
             </ConfirmRequest>
 
-            <div>Desculpe, mas o limite do carrinho são 5 cafés!</div>
+            {quantityCoffees > 5 && (
+              <ErrorCartValidationContainer>
+                <Warning size={20} />
+                <div>
+                  <p>Desculpe, mas o limite do carrinho são 5 cafés!</p>
+                  <strong>
+                    {'('}
+                    {quantityCoffees} cafés selecionados
+                    {')'}
+                  </strong>
+                </div>
+              </ErrorCartValidationContainer>
+            )}
           </RequestInfoContainer>
         </CoffeesSelectedContainer>
       </CoffeesSelected>

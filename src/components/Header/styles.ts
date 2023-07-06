@@ -41,6 +41,10 @@ export const LocationContainer = styled.div`
   }
 `
 
+export const ButtomCartContainer = styled.div`
+  display: flex;
+`
+
 export const ButtonCart = styled.div`
   height: 2.125rem;
 

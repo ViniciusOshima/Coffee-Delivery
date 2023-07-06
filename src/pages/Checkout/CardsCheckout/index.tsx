@@ -38,18 +38,24 @@ export function CardCheckout({ name, photo, id, price }: CardCheckoutProps) {
 
           <ButtonsDetailsContainer>
             <HowManyContainer>
-              <button onClick={() => handleDecrementCoffeeById(id)}>
+              <button
+                type="button"
+                onClick={() => handleDecrementCoffeeById(id)}
+              >
                 <Minus size={14} />
               </button>
 
               <p>{quantity}</p>
 
-              <button onClick={() => handleAddCoffeeById(id)}>
+              <button type="button" onClick={() => handleAddCoffeeById(id)}>
                 <Plus size={14} />
               </button>
             </HowManyContainer>
 
-            <RemoveButtonContainer onClick={() => handleRemoveCoffeById(id)}>
+            <RemoveButtonContainer
+              type="button"
+              onClick={() => handleRemoveCoffeById(id)}
+            >
               <Trash size={16} />
               <p>REMOVER</p>
             </RemoveButtonContainer>

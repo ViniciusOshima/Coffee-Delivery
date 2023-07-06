@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import Logo from '../../assets/Logo-coffee-delivery.svg'
 
 import {
+  ButtomCartContainer,
   ButtonCart,
   HeaderContainer,
   LocationContainer,
@@ -13,7 +14,7 @@ import { useContext } from 'react'
 import { CoffeesContext } from '../../contexts/CoffeesContext'
 
 export function Header() {
-  const { cart } = useContext(CoffeesContext)
+  const { quantityCoffees } = useContext(CoffeesContext)
 
   return (
     <HeaderContainer>
@@ -27,15 +28,17 @@ export function Header() {
           <p>Suzano, SP</p>
         </LocationContainer>
 
-        <NavLink to="/checkout" title="Checkout">
-          <ButtonCart>
-            <ShoppingCart size={22} weight="fill" />
-          </ButtonCart>
+        <ButtomCartContainer>
+          <NavLink to="/checkout" title="Checkout">
+            <ButtonCart>
+              <ShoppingCart size={22} weight="fill" />
+            </ButtonCart>
+          </NavLink>
 
-          {cart.length !== 0 && (
-            <QuantinyCoffeesOnCart>{cart.length}</QuantinyCoffeesOnCart>
+          {quantityCoffees !== 0 && (
+            <QuantinyCoffeesOnCart>{quantityCoffees}</QuantinyCoffeesOnCart>
           )}
-        </NavLink>
+        </ButtomCartContainer>
       </nav>
     </HeaderContainer>
   )

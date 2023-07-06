@@ -305,3 +305,16 @@ export const ConfirmRequest = styled.div`
     }
   }
 `
+
+export const ErrorCartValidationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  padding: 1rem 0 0;
+
+  color: red;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+`
