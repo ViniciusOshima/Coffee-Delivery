@@ -106,6 +106,8 @@ export function Checkout() {
     }
   }
 
+  console.log(paymentMethod)
+
   return (
     <CheckoutContainer action="" onSubmit={handleSubmit(handleSubmitAdress)}>
       <CompleteYourRequest>
@@ -334,7 +336,9 @@ export function Checkout() {
             </ValuesCoffeeContainer>
 
             <ConfirmRequest>
-              <button type="submit">CONFIRMAR PEDIDO</button>
+              <button disabled={paymentMethod.anyPayment} type="submit">
+                CONFIRMAR PEDIDO
+              </button>
             </ConfirmRequest>
           </RequestInfoContainer>
         </CoffeesSelectedContainer>

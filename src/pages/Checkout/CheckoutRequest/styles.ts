@@ -298,5 +298,10 @@ export const ConfirmRequest = styled.div`
     &:hover {
       background-color: ${(props) => props.theme['yellow-dark']};
     }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
   }
 `
