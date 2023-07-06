@@ -5,7 +5,6 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react'
-import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
@@ -39,7 +38,7 @@ import {
   ButtonPaymentContainerSelected,
 } from './styles'
 import { CardCheckout } from '../CardsCheckout'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { CoffeesContext } from '../../../contexts/CoffeesContext'
 import { formatCurrency } from '../../../utils/currency/format'
 
@@ -55,21 +54,9 @@ const newAdressFormValidationSchema = zod.object({
 
 type NewAdressFormData = zod.infer<typeof newAdressFormValidationSchema>
 
-interface PaymentMethodProps {
-  anyPayment?: boolean
-  creditCard?: boolean
-  debitCard?: boolean
-  money?: boolean
-}
-
 export function Checkout() {
-  const { cart, totalValue } = useContext(CoffeesContext)
-
-  const navigate = useNavigate()
-
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethodProps>({
-    anyPayment: true,
-  })
+  const { cart, totalValue, submitAdress, handlePaymentMethod, paymentMethod } =
+    useContext(CoffeesContext)
 
   const { register, handleSubmit, reset } = useForm<NewAdressFormData>({
     resolver: zodResolver(newAdressFormValidationSchema),
@@ -85,28 +72,10 @@ export function Checkout() {
   })
 
   function handleSubmitAdress(data: NewAdressFormData) {
-    navigate('/success')
+    submitAdress(data)
 
     reset()
   }
-
-  function handlePaymentMethod(method: string) {
-    switch (method) {
-      case 'CARTÃO DE CRÉDITO':
-        setPaymentMethod({ creditCard: true })
-        break
-      case 'CARTÃO DE DÉBITO':
-        setPaymentMethod({ debitCard: true })
-        break
-      case 'DINHEIRO':
-        setPaymentMethod({ money: true })
-        break
-      default:
-        setPaymentMethod({ anyPayment: true })
-    }
-  }
-
-  console.log(paymentMethod)
 
   return (
     <CheckoutContainer action="" onSubmit={handleSubmit(handleSubmitAdress)}>
@@ -336,7 +305,10 @@ export function Checkout() {
             </ValuesCoffeeContainer>
 
             <ConfirmRequest>
-              <button disabled={paymentMethod.anyPayment} type="submit">
+              <button
+                disabled={paymentMethod.anyPayment || cart.length === 0}
+                type="submit"
+              >
                 CONFIRMAR PEDIDO
               </button>
             </ConfirmRequest>

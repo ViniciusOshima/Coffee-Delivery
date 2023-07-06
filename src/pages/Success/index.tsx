@@ -12,8 +12,12 @@ import {
   SuccessContainer,
   TimerContainer,
 } from './styles'
+import { useContext } from 'react'
+import { CoffeesContext } from '../../contexts/CoffeesContext'
 
 export function Success() {
+  const { address, paymentMethod } = useContext(CoffeesContext)
+
   return (
     <>
       <SuccessContainer>
@@ -31,10 +35,14 @@ export function Success() {
               <div>
                 <AddressContainer>
                   <p>Entrega em</p>
-                  <strong>Rua João Daniel Martinelli, 102</strong>
+                  <strong>
+                    {address.Rua}, {address.Número}
+                  </strong>
                 </AddressContainer>
 
-                <p>Farrapos - Porto Alegre, RS</p>
+                <p>
+                  {address.Bairro} - {address.Cidade}, {address.UF}
+                </p>
               </div>
             </SpecificInfoContainer>
 
@@ -54,7 +62,15 @@ export function Success() {
               </CurrencyDollarContainer>
               <div>
                 <p>Pagamento na entrega</p>
-                <strong>Cartão de Crédito</strong>
+                {paymentMethod.creditCard && (
+                  <strong>{paymentMethod.creditCard}</strong>
+                )}
+
+                {paymentMethod.debitCard && (
+                  <strong>{paymentMethod.debitCard}</strong>
+                )}
+
+                {paymentMethod.money && <strong>{paymentMethod.money}</strong>}
               </div>
             </SpecificInfoContainer>
           </InfoContainer>
