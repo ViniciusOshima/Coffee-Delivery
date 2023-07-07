@@ -143,6 +143,7 @@ export function CoffeesContextProvider({
     setCart((preCart) => preCart.filter((coffee) => coffee.id !== id))
 
     setTotalValue(0)
+    setQuantityCoffees(0)
   }
 
   const handleDecrementCoffeeById = (id: string) => {
