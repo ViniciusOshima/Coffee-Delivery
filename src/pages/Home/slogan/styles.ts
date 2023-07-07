@@ -4,19 +4,32 @@ import bgHome from '../../../assets/Background-Home.svg'
 
 export const ImgContainer = styled.img`
   width: 29.75rem;
-  height: 22.5rem;
+
+  @media (max-width: 980px) {
+    width: 26rem;
+  }
 `
 
 export const HomeContainer = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 3.5rem;
 
-  padding: 5.875rem 10px 6.75rem;
+  padding: 5.875rem 30px 6.75rem;
 
   width: 100%;
   max-width: 70rem;
   margin: 0 auto;
+
+  @media (max-width: 980px) {
+    padding: 3rem 30px 4rem;
+  }
+
+  @media (max-width: 940px) {
+    flex-direction: column;
+
+    padding: 5.875rem 30px 6.75rem;
+  }
 `
 
 export const BackgroundHomeContainer = styled.div`
@@ -47,6 +60,10 @@ export const SloganContainer = styled.div`
 
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #000;
+
+    @media (max-width: 940px) {
+      text-align: center;
+    }
   }
 
   h2 {
@@ -55,6 +72,10 @@ export const SloganContainer = styled.div`
     font-weight: 400;
     line-height: 130%;
     color: #403937;
+
+    @media (max-width: 940px) {
+      text-align: center;
+    }
   }
 `
 
@@ -105,12 +126,21 @@ const QualitiesDefault = styled.div`
     align-items: center;
 
     color: white;
+
+    @media (max-width: 560px) {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
   }
 `
 
 export const ShoppingCartContainer = styled(QualitiesDefault)`
   span {
     background-color: ${(props) => props.theme['yellow-dark']};
+  }
+
+  @media (max-width: 1200px) {
+    width: 15rem;
   }
 `
 
@@ -120,11 +150,19 @@ export const PackageContainer = styled(QualitiesDefault)`
   span {
     background-color: ${(props) => props.theme['base-text']};
   }
+
+  @media (max-width: 1200px) {
+    width: 20rem;
+  }
 `
 
 export const TimerContainer = styled(QualitiesDefault)`
   span {
     background-color: ${(props) => props.theme.yellow};
+  }
+
+  @media (max-width: 1200px) {
+    width: 15rem;
   }
 `
 
@@ -133,6 +171,10 @@ export const CoffeeContainer = styled(QualitiesDefault)`
 
   span {
     background-color: ${(props) => props.theme.purple};
+  }
+
+  @media (max-width: 1200px) {
+    width: 20rem;
   }
 `
 
@@ -144,16 +186,30 @@ export const ContainerCoffee = styled.div`
 
   width: 100%;
   max-width: 70rem;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   h1 {
     margin-bottom: 4.125rem;
+    width: 100%;
+
+    @media (max-width: 980px) {
+      padding-left: 30px;
+    }
+  }
+
+  @media (max-width: 980px) {
+    max-width: 60rem;
   }
 `
 
 export const ContainerWrapCoffee = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 2rem;
 
   width: 100%;

@@ -20,4 +20,10 @@ export const GlobalStyle = createGlobalStyle`
       font-size: 87.5%;
     }
   }
+
+  @media(max-width: 560px) {
+    html {
+      font-size: 70%;
+    }
+  }
 `
