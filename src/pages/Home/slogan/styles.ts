@@ -209,9 +209,13 @@ export const ContainerCoffee = styled.div`
 export const ContainerWrapCoffee = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 2rem;
 
   width: 100%;
   max-width: 70rem;
+
+  @media (max-width: 980px) {
+    justify-content: center;
+  }
 `

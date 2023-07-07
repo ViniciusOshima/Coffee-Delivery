@@ -38,6 +38,7 @@ import {
   ValuesCoffeeContainer,
   ButtonPaymentContainerSelected,
   ErrorCartValidationContainer,
+  FormButtonPaymentContainer,
 } from './styles'
 import { CardCheckout } from '../CardsCheckout'
 import { useContext } from 'react'
@@ -90,7 +91,7 @@ export function Checkout() {
       <CompleteYourRequest>
         <TitlesCheckoutContainer>Complete seu pedido</TitlesCheckoutContainer>
 
-        <div>
+        <FormButtonPaymentContainer>
           <FormSection>
             <FormDescription>
               <MapPinLine size={22} />
@@ -276,7 +277,7 @@ export function Checkout() {
               )}
             </ButtonSectionContainer>
           </PaymentSectionContainer>
-        </div>
+        </FormButtonPaymentContainer>
       </CompleteYourRequest>
 
       <CoffeesSelected>

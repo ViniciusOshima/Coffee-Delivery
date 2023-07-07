@@ -6,6 +6,17 @@ export const CardContainer = styled.div`
 
   padding: 1.5rem 0;
   border-bottom: 1px solid ${(props) => props.theme['base-button']};
+
+  @media (max-width: 1010px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  @media (max-width: 900px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
 `
 
 export const InfoCardContainer = styled.div`
@@ -102,4 +113,12 @@ export const ValueCoffeeCardContainer = styled.h3`
   font-weight: 700;
   text-align: 130%;
   color: ${(props) => props.theme['base-text']};
+
+  @media (max-width: 1010px) {
+    margin: 0 5.5rem;
+  }
+
+  @media (max-width: 900px) {
+    margin: 0;
+  }
 `

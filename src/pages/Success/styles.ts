@@ -5,6 +5,14 @@ export const SuccessContainer = styled.div`
   max-width: 70rem;
 
   margin: 0 auto;
+
+  @media (max-width: 1110px) {
+    max-width: 64rem;
+  }
+
+  @media (max-width: 920px) {
+    max-width: 33rem;
+  }
 `
 export const IntroContainer = styled.div`
   padding: 5rem 0 2.5rem;
@@ -31,11 +39,15 @@ export const InfoImgContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 6.375rem;
+
+  @media (max-width: 920px) {
+    flex-direction: column;
+    gap: 3rem;
+  }
 `
 
 export const InfoContainer = styled.div`
   border-radius: 6px 36px 6px 36px;
-  border: 1px solid;
 
   width: 32.875rem;
   padding: 2.5rem;
@@ -45,6 +57,16 @@ export const InfoContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 2rem;
+
+  background: ${(props) => props.theme.background};
+`
+
+export const BorderInfoContainer = styled.div`
+  background-image: linear-gradient(135deg, #dbac2c, #8047f8);
+
+  border-radius: 6px 36px 6px 36px;
+
+  padding: 1px;
 `
 
 export const SpecificInfoContainer = styled.div`
@@ -113,7 +135,10 @@ export const CurrencyDollarContainer = styled.div`
   background-color: ${(props) => props.theme['yellow-dark']};
 `
 
-export const ImgSuccessContainer = styled.div`
+export const ImgSuccessContainer = styled.img`
   width: 30.75rem;
-  height: 18.3125rem;
+
+  @media (max-width: 1110px) {
+    width: 25rem;
+  }
 `

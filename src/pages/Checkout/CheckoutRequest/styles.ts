@@ -9,6 +9,17 @@ export const CheckoutContainer = styled.form`
   display: flex;
   gap: 32px;
   justify-content: center;
+
+  @media (max-width: 1010px) {
+    max-width: 50rem;
+  }
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    max-width: 45rem;
+  }
 `
 
 export const TitlesCheckoutContainer = styled.h2`
@@ -21,10 +32,30 @@ export const TitlesCheckoutContainer = styled.h2`
 
 export const CompleteYourRequest = styled.div`
   width: 40rem;
+
+  @media (max-width: 610px) {
+    width: 100%;
+    max-width: 33rem;
+    margin: 0 auto;
+  }
+`
+
+export const FormButtonPaymentContainer = styled.div`
+  @media (max-width: 510px) {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 `
 
 export const CoffeesSelected = styled.div`
   width: 28rem;
+
+  @media (max-width: 610px) {
+    width: 100%;
+    max-width: 33rem;
+    margin: 0 auto;
+  }
 `
 
 export const FormSection = styled.div`
@@ -34,6 +65,12 @@ export const FormSection = styled.div`
   padding: 2.5rem;
 
   background-color: ${(props) => props.theme['base-card']};
+
+  @media (max-width: 510px) {
+    width: 100%;
+    max-width: 33rem;
+    margin: 0 auto;
+  }
 `
 
 export const FormDescription = styled.div`
@@ -100,22 +137,42 @@ export const CEPInputContainer = styled.input`
 
 export const RuaInputInputContainer = styled.input`
   width: 35rem;
+
+  @media (max-width: 610px) {
+    width: 28.5rem;
+  }
 `
 
 export const NumeroInputContainer = styled.input`
   width: 12.5rem;
+
+  @media (max-width: 610px) {
+    width: 10rem;
+  }
 `
 
 export const ComplementoInputContainer = styled.input`
   width: 21.75rem;
+
+  @media (max-width: 610px) {
+    width: 17.4rem;
+  }
 `
 
 export const BairroInputContainer = styled.input`
   width: 12.5rem;
+
+  @media (max-width: 610px) {
+    width: 10rem;
+  }
 `
 
 export const CidadeInputContainer = styled.input`
   width: 17.25rem;
+
+  @media (max-width: 610px) {
+    width: 12.5rem;
+  }
 `
 
 export const UFInputContainer = styled.input`
@@ -139,6 +196,12 @@ export const PaymentSectionContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  @media (max-width: 510px) {
+    width: 100%;
+    max-width: 33rem;
+    margin: 0 auto;
+  }
 `
 
 export const PaymentDescriptionContainer = styled.div`
@@ -241,6 +304,14 @@ export const CoffeesSelectedContainer = styled.div`
   padding: 1rem 2.5rem 2.5rem;
 
   background-color: ${(props) => props.theme['base-card']};
+
+  @media (max-width: 1010px) {
+    width: 20rem;
+  }
+
+  @media (max-width: 900px) {
+    width: 28rem;
+  }
 `
 
 export const RequestInfoContainer = styled.div``
