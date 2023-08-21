@@ -18,7 +18,7 @@ export function Header() {
 
   return (
     <HeaderContainer>
-      <NavLink to="/coffee-delivery" title="Home">
+      <NavLink to="/Coffee-Delivery" title="Home">
         <img src={Logo} alt="" />
       </NavLink>
 
