@@ -9,12 +9,10 @@ Nesse desafio desenvolvi uma aplicação para gerenciar um carrinho de compras d
 
 + Listagem de produtos (cafés) disponíveis para compra
 + Adicionar uma quantidade específicas de itens no carrinho**
-+ Aumentar ou remover a quantidade de itens no carrinho
++ Aumentar, diminuir ou remover a quantidade de itens no carrinho
 + Formulário para o usuário preencher o seu endereço
 + Exibir o total de itens no carrinho no Header
 + Exibir o valor total da soma de itens no carrinho multiplicados pelo valor
-
-+ <p></p>
 
 **Sobre o limite de itens no carrinho, não estava especificado no layout do figma como isto seria imposto, logo defini um limite de 5 cafés no carrinho, não permitindo o submit do formulário caso haja mais cafés do que o limite!
 
